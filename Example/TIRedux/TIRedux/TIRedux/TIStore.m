@@ -17,17 +17,17 @@
 @property (nonatomic, strong, readwrite) TIState *state;
 //TODO: 线程安全数组, 且能存储 weak pointer
 @property (nonatomic, strong, readwrite) NSMutableArray<id<TIStateSubscriber>> *subscribers;
-@property (nonatomic, strong, readwrite) id<TIReducer> dispatcher;
+@property (nonatomic, strong, readwrite) id<TIReducer> reducer;
 @end
 
 @implementation TIStore
 
-- (instancetype)initWithInitState:(__kindof TIState *)initState dispatcher:(id<TIReducer>)dispatcher {
+- (instancetype)initWithInitState:(__kindof TIState *)initState reducer:(id<TIReducer>)reducer {
     self = [super init];
     if (self) {
         self.state = initState;
         self.subscribers = [NSMutableArray array];
-        self.dispatcher = dispatcher;
+        self.reducer = reducer;
     }
     return self;
 }
@@ -64,7 +64,7 @@
 
 - (void)dispatch:(__kindof TIDispatchAction *)action {
     TIState *state = [self getState];
-    TIState *newState = [self.dispatcher dispatch:action state:state];
+    TIState *newState = [self.reducer dispatch:action state:state];
     self.state = newState;
     [self changeState:newState oldState:state];
 }

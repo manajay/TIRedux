@@ -32,7 +32,7 @@
     
     TICustomState *initState = [[TICustomState alloc] init];
     TICustomReducer *dispatch = [[TICustomReducer alloc] init];
-    TIStore *store = [[TIStore alloc] initWithInitState:initState dispatcher:dispatch];
+    TIStore *store = [[TIStore alloc] initWithInitState:initState reducer:dispatch];
     self.store = store;
     
     // Do any additional setup after loading the view.

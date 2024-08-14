@@ -16,8 +16,7 @@
     if (![state isKindOfClass:[TICustomState class]]) {
         return state;
     }
-    if ([action isKindOfClass:[TIMiddleClickCountIncrementDispatchAction class]]) {
-//        TIMiddleClickCountIncrementDispatchAction *incrementAction = (TIMiddleClickCountIncrementDispatchAction *)action;
+    if ([action.type isEqualToString:NSStringFromClass([TIMiddleClickCountIncrementDispatchAction class])]) {
         TICustomState *newState = [state generateNewState];
         newState.middleCount ++;
         return newState;

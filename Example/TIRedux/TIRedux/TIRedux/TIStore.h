@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 提供 getState 读取状态， changeState 更新状态， subscriber 通知订阅者状态更新回调 的 3 种能力
 @interface TIStore : NSObject
 
-- (instancetype)initWithInitState:(__kindof TIState *)initState dispatcher:(id<TIReducer>)dispatcher;
+- (instancetype)initWithInitState:(__kindof TIState *)initState reducer:(id<TIReducer>)reducer;
 
 - (void)susbcribe:(id<TIStateSubscriber>)subscriber;
 - (void)unsusbcribe:(id<TIStateSubscriber>)subscriber;
